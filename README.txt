@@ -1,29 +1,17 @@
 SelectLoop
 
-This is an experimental script called selectloop.py. It uses a Claude Sonnet 4.6 LLM through
-AWS Bedrock. It is written for an Oracle DBA who is solving database problems such as 
-performance problems. You pass it a text file such as question.txt and it outputs two other
-text files, such as select.txt and report.txt. You can name these anything of course. select.txt
-is a list of select statements (queries) that Claude generated and their output when run against
-the database. report.txt is the output of a final Claude inference based on the queries and their
-outputs. You can limit how long it runs using the command line arguments.
+Selectloop is a Python script that queries an Oracle database to answer your question.
 
-Need seven arguments. Expected run string and example:
+You pass it the database name and the name of a text file containing your question. 
 
-python selectloop.py database question_file select_file report_file num_loops timeout_seconds max_rows
+Expected run string and example:
 
-python selectloop.py MYDBNAME question.txt select.txt report.txt 10 60 1000
+python selectloop.py database question_file
 
+python selectloop.py MYDBNAME question.txt
+
+database - name of the Oracle database that you are connecting to
 question_file - text file with question you want answered about the database
-select_file - list of select statements Claude generated and their outputs
-report_file - final output of this run - text file
-num_loops - number of select statements to generate and run
-timeout_seconds - timeout in seconds for both the database calls and the bedrock LLM calls
-max_rows - max number of rows fetched in each query that is run
-
-With big enough values it is easy to blow out the limit of 1,000,000 tokens so these keep it manageable.
-
-Just like working with AI chat sites be sure to check everything it tells you and do your own investigation.
 
 For this version to work you need a user with these
 privileges:
@@ -55,4 +43,4 @@ You need a tnsnames.ora with the database in it and
 all the environment variables and path setup for this to run
 with defaults.
 
-Of course you can edit db.py, bedrock.py, and credentials.py to work in your environment.
+You need to edit db.py, bedrock.py, and credentials.py to work in your environment.

@@ -17,3 +17,11 @@ def get_userpassword(database):
 
     return "YOURUSER","YOURPASSWORD"
     
+def drop_user(database):
+    """
+    
+    If you created a temporary user drop it here.
+    
+    """
+    
+    return None
